@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dayjs": "^1.8.14",
+    "node-notifier": "^5.4.0",
+    "puppeteer": "^1.15.0"
+  }
+}
