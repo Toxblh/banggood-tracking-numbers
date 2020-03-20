@@ -2,3 +2,5 @@ node_modules
 config.js
 .DS_Store
 .vscode
+orders.xls
+orders.csv
