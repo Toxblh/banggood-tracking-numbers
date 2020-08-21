@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.20.0",
     "csv-parser": "^2.3.3",
     "dayjs": "^1.8.34",
     "puppeteer": "^5.2.1"
