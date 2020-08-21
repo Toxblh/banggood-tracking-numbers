@@ -16,30 +16,30 @@ async function getPage() {
     "--window-position=0,0",
     "--ignore-certifcate-errors",
     "--ignore-certifcate-errors-spki-list",
-    '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3312.0 Safari/537.36"'
+    '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3312.0 Safari/537.36"',
   ];
 
   const options = {
     args,
     headless: true,
-    ignoreHTTPSErrors: true
+    ignoreHTTPSErrors: true,
   };
 
   const browser = await puppeteer.launch(options);
   const page = await browser.newPage();
   page.setViewport({
     width: 1920,
-    height: 1000
+    height: 1000,
   });
 
   await page.goto("https://www.banggood.com/login.html", {
-    waitUntil: "networkidle0"
+    waitUntil: "networkidle0",
   });
   console.info("Open Banggood...");
 
   await page._client.send("Page.setDownloadBehavior", {
     behavior: "allow",
-    downloadPath: "./"
+    downloadPath: "./",
   });
 
   await page.focus("#login-email");
@@ -76,17 +76,17 @@ const deleteOldFile = () => {
   }
 };
 
-const readfile = cb => {
+const readfile = (cb) => {
   fs.createReadStream(FileOreders)
     .pipe(
       csv({
-        separator: "\t"
+        separator: "\t",
       })
     )
-    .on("data", data => results.push(data))
+    .on("data", (data) => results.push(data))
     .on("end", () => {
       const out = [];
-      results.forEach(item => {
+      results.forEach((item) => {
         if (
           item.Status !== "Order Completed" &&
           item["Tracking Number "] != " "
@@ -95,7 +95,7 @@ const readfile = cb => {
             OrderID: Number(item.OrderID),
             "Tracking Number": item["Tracking Number "],
             Date: item["Date"],
-            Price: Number(item["Grand Total"]).toFixed(2)
+            Price: Number(item["Grand Total"]).toFixed(2),
           });
         }
       });
@@ -104,25 +104,25 @@ const readfile = cb => {
     });
 };
 
-const saveResult = values => {
+const saveResult = (values) => {
   console.table(
     values.sort((a, b) => dayjs(b.Date).unix() - dayjs(a.Date).unix())
   );
 
   const temp = [];
   temp.push(Object.keys(values[1]));
-  values.forEach(item => {
+  values.forEach((item) => {
     temp.push([item.OrderID, item["Tracking Number"], item.Date, item.Price]);
   });
 
   var file = fs.createWriteStream("orders.csv");
-  file.on("error", function(err) {
-    console.error('smth wrong')
+  file.on("error", function (err) {
+    console.error("smth wrong");
   });
   file.on("close", () => {
     process.exit();
   });
-  temp.forEach(v => {
+  temp.forEach((v) => {
     file.write(v.join(",") + "\n");
   });
   file.end();
