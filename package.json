@@ -2,7 +2,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "csv-parser": "^2.3.3",
-    "dayjs": "^1.9.3",
+    "dayjs": "^1.9.4",
     "puppeteer": "^5.3.1"
   }
 }
