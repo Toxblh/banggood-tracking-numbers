@@ -3,6 +3,6 @@
     "axios": "^0.21.1",
     "csv-parser": "^3.0.0",
     "dayjs": "^1.10.5",
-    "puppeteer": "^10.0.0"
+    "puppeteer": "^10.1.0"
   }
 }
