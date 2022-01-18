@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "axios": "^0.24.0",
+    "axios": "^0.25.0",
     "csv-parser": "^3.0.0",
     "dayjs": "^1.10.7",
-    "puppeteer": "^13.0.1"
+    "puppeteer": "^13.1.1"
   }
 }
